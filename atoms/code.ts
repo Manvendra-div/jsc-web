@@ -10,3 +10,5 @@ render "Hello, " + developer + "!";
 `);
 
 export const output_code_atom = atom<string | null>(null);
+
+export const loading_run_atom = atom<boolean>(false)
