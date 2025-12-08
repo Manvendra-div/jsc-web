@@ -2,19 +2,20 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "./ui/button";
 import {
   ArrowRight,
+  Eclipse,
   ExternalLink,
   GamepadDirectional,
   LogIn,
 } from "lucide-react";
 import CodeRunButton from "./coderunbutton";
 import Link from "next/link";
-import Image from "next/image";
+
 
 export default function NavBar() {
   return (
     <div className="flex justify-between items-center w-full px-10 py-4">
       <div className="flex items-center gap-2">
-        <Image src={"/jsc-logo.svg"} width={"24"} height={"24"} alt="JSC Logo"/>
+        <Eclipse className="fill-primary stroke-primary-foreground border border-primary"/>
         <span className="text-xl font-medium">
           JSC - Just a Simple Compiler
         </span>
