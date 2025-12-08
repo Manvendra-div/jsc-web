@@ -8,11 +8,13 @@ import {
 } from "lucide-react";
 import CodeRunButton from "./coderunbutton";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NavBar() {
   return (
     <div className="flex justify-between items-center w-full px-10 py-4">
-      <div className="flex items-start gap-2">
+      <div className="flex items-center gap-2">
+        <Image src={"/jsc-logo.svg"} width={"24"} height={"24"} alt="JSC Logo"/>
         <span className="text-xl font-medium">
           JSC - Just a Simple Compiler
         </span>
