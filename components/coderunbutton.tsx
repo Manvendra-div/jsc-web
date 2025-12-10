@@ -71,17 +71,40 @@ export default function CodeRunButton() {
     }
   };
   return (
-    <Button size={"lg"} onClick={runthecode} disabled={isRunLoading}>
-      {isRunLoading ? (
-        <>
-          <Loader2 className="w-4 h-4 animate-spin" /> Loading...
-        </>
-      ) : (
-        <>
-          <Play className="fill-primary-foreground w-4 h-4" /> Run the
-          playground
-        </>
-      )}
-    </Button>
+    <>
+      <Button
+        size={"lg"}
+        onClick={runthecode}
+        className="hidden sm:inline-flex"
+        disabled={isRunLoading}
+      >
+        {isRunLoading ? (
+          <>
+            <Loader2 className="w-4 h-4 animate-spin" /> Loading...
+          </>
+        ) : (
+          <>
+            <Play className="fill-primary-foreground w-4 h-4" /> Run the
+            playground
+          </>
+        )}
+      </Button>
+      <Button
+        size={"icon"}
+        onClick={runthecode}
+        className="sm:hidden"
+        disabled={isRunLoading}
+      >
+        {isRunLoading ? (
+          <>
+            <Loader2 className="w-4 h-4 animate-spin" />
+          </>
+        ) : (
+          <>
+            <Play className="fill-primary-foreground w-4 h-4" />
+          </>
+        )}
+      </Button>
+    </>
   );
 }
