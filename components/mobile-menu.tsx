@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowRight, Eclipse, ExternalLink, GamepadDirectional, LogIn } from "lucide-react";
+import { ArrowRight, BookOpenText, Eclipse, ExternalLink, GamepadDirectional, Home, LogIn } from "lucide-react";
 import { Url } from "next/dist/shared/lib/router/router";
 import { ReactNode } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
@@ -17,27 +17,27 @@ export default function MobileMenu({ children }: { children: ReactNode }) {
     type: "link" | "action";
     action: (() => void) | Url;
   }[] = [
-    {
-      icon: <LogIn className="w-4 h-4" />,
-      text: "Login",
+     {
+      icon: <Home className="w-4 h-4" />,
+      text: "Home",
       cn: "",
-      type: "action",
-      action: () => {},
-    },
-    {
-      icon: <ArrowRight className="w-4 h-4" />,
-      text: "Sign-Up",
-      cn: "",
-      type: "action",
-      action: () => {},
-    },
-    {
-      icon: <ExternalLink />,
-      text: "Mr. Developer",
-      cn: "bg-linear-to-r from-blue-600 to-violet-500",
       type: "link",
-      action: "https://manvendrasingh.net.in",
+      action: "/",
     },
+    {
+      icon: <BookOpenText className="w-4 h-4" />,
+      text: "Read Docs",
+      cn: "",
+      type: "link",
+      action: "/docs",
+    },
+    {
+      icon: <GamepadDirectional className="w-4 h-4" />,
+      text: "Playground",
+      cn: "",
+      type: "link",
+      action: "/playground",
+    }
   ];
 
   return (
@@ -69,8 +69,7 @@ export default function MobileMenu({ children }: { children: ReactNode }) {
                 className={cn(item.cn,"w-full")}
                 size={"lg"}
               >
-                {item.text}
-                {item.icon}
+                {item.icon}{item.text}
               </Button>
             </Link>
           ) : (

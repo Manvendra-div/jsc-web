@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 export default function CodeBox() {
   const [code, setCode] = useAtom(input_code_atom);
-  const [output, setOutput] = useState("");
   const monaco = useMonaco();
 
   useEffect(() => {
