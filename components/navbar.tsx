@@ -1,12 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "./ui/button";
 import {
-  ArrowRight,
   BookOpenText,
   Eclipse,
-  ExternalLink,
   GamepadDirectional,
-  LogIn,
   Menu,
 } from "lucide-react";
 import CodeRunButton from "./coderunbutton";

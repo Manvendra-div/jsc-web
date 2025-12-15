@@ -1,6 +1,7 @@
 import { ArrowUpRight, BookOpenText, Eclipse, Menu } from "lucide-react";
 import { Button } from "../ui/button";
 import MobileMenu from "../mobile-menu";
+import Link from "next/link";
 
 export default function LandingNavBar() {
   return (
@@ -17,19 +18,23 @@ export default function LandingNavBar() {
             <Menu />
           </Button>
         </MobileMenu>
-        <Button
-          size={"lg"}
-          variant={"secondary"}
-          className="hidden sm:inline-flex"
-        >
-          Read Docs
-          <BookOpenText className="w-4 h-4" />
-        </Button>
+        <Link href={"/docs"}>
+          <Button
+            size={"lg"}
+            variant={"secondary"}
+            className="hidden sm:inline-flex"
+          >
+            Read Docs
+            <BookOpenText className="w-4 h-4" />
+          </Button>
+        </Link>
         <div className="h-8 bg-muted w-1.5 rounded-md hidden sm:block" />
-        <Button size={"lg"} className="hidden sm:inline-flex">
-          Try it
-          <ArrowUpRight className="w-4 h-4" />
-        </Button>
+        <Link href={"/playground"}>
+          <Button size={"lg"} className="hidden sm:inline-flex">
+            Try it
+            <ArrowUpRight className="w-4 h-4" />
+          </Button>
+        </Link>
       </div>
     </div>
   );
