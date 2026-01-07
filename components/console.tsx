@@ -3,7 +3,8 @@
 import { motion } from "motion/react";
 import {
   ArrowDownRight,
-  Delete,
+  BrushCleaning,
+  Copy,
   ExternalLink,
   GripVertical,
 } from "lucide-react";
@@ -12,11 +13,25 @@ import { useAtom } from "jotai";
 import { output_code_atom } from "@/atoms/code";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import copy from "copy-to-clipboard";
+import { toast } from "sonner";
 
 export default function Console() {
   const [stdout, setStdout] = useAtom(output_code_atom);
   const [toggleFloat, setToggleFloat] = useState<boolean>(false);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+
+  const handleCopy = (content: string) => {
+    // The library returns a boolean indicating success
+    const success = copy(content);
+    if (success) {
+      setIsCopied(true);
+      toast.success("Console Copied to Clipboard.")
+      setTimeout(() => setIsCopied(false), 2000);
+    }
+  };
 
   useEffect(() => {
     // Set initial window size
@@ -60,7 +75,7 @@ export default function Console() {
       }}
       className={cn(
         toggleFloat
-          ? "fixed min-h-[200px] w-[300px] sm:min-h-[400px] sm:w-[600px] border-4 shadow-2xl bg-background/60 backdrop-blur-lg cursor-move z-50"
+          ? "fixed min-h-[200px] w-[300px] sm:min-h-[400px] sm:w-[600px] border-4 shadow-2xl bg-background/60 backdrop-blur-lg z-50"
           : "min-h-[200px] relative w-full bg-muted",
         "border rounded-md p-4 grow flex flex-col"
       )}
@@ -71,15 +86,39 @@ export default function Console() {
           <GripVertical className="w-5 h-5 text-muted-foreground" />
         </div>
       )}
+
       <div className="absolute top-4 right-4 flex items-center gap-2">
-        <Button
-          variant={"outline"}
-          size={"icon"}
-          disabled={!!!stdout}
-          onClick={() => setStdout(null)}
-        >
-          <Delete />
-        </Button>
+        {!!stdout && (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                onClick={() => handleCopy(stdout)}
+                variant={"outline"}
+                size={"icon"}
+              >
+                <Copy />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Click to Copy Console</p>
+            </TooltipContent>
+          </Tooltip>
+        )}
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant={"outline"}
+              size={"icon"}
+              disabled={!!!stdout}
+              onClick={() => setStdout(null)}
+            >
+              <BrushCleaning />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Clear Console</p>
+          </TooltipContent>
+        </Tooltip>
         <Button
           onClick={() => setToggleFloat(!toggleFloat)}
           size={"sm"}
