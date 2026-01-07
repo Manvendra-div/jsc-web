@@ -35,7 +35,7 @@ export default function Console() {
     // Cleanup
     return () => window.removeEventListener("resize", updateWindowSize);
   }, []);
-  
+
   return (
     <motion.div
       key={toggleFloat ? "floating" : "embedded"}
@@ -47,16 +47,12 @@ export default function Console() {
           ? {
               top: 0,
               left: 0,
-              right: windowSize.width - 600,
-              bottom: windowSize.height - 400,
             }
           : undefined
       }
       initial={toggleFloat ? { scale: 0.8, opacity: 0 } : false}
       animate={
-        toggleFloat
-          ? { scale: 1, opacity: 1 }
-          : { scale: 1, opacity: 1 }
+        toggleFloat ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }
       }
       transition={{
         duration: 0.3,
@@ -64,8 +60,8 @@ export default function Console() {
       }}
       className={cn(
         toggleFloat
-          ? "fixed min-h-[200px] w-[300px] sm:min-h-[400px] sm:w-[600px] border-4 shadow-sm bg-background/60 backdrop-blur-lg cursor-move"
-          : "min-h-[200px] relative w-full bg-muted z-50",
+          ? "fixed min-h-[200px] w-[300px] sm:min-h-[400px] sm:w-[600px] border-4 shadow-sm bg-background/60 backdrop-blur-lg cursor-move z-50"
+          : "min-h-[200px] relative w-full bg-muted",
         "border rounded-md p-4 grow flex flex-col"
       )}
     >
@@ -89,13 +85,19 @@ export default function Console() {
           size={"sm"}
           className="hidden sm:inline-flex"
         >
-          {
-            toggleFloat ? <>Pop In The Console <ArrowDownRight /></>:<>Pop Out The Console <ExternalLink /></>
-          }
+          {toggleFloat ? (
+            <>
+              Pop In The Console <ArrowDownRight />
+            </>
+          ) : (
+            <>
+              Pop Out The Console <ExternalLink />
+            </>
+          )}
         </Button>
-        <Button 
+        <Button
           onClick={() => setToggleFloat(!toggleFloat)}
-          size={"icon"} 
+          size={"icon"}
           className="sm:hidden"
         >
           <ExternalLink />
@@ -107,9 +109,12 @@ export default function Console() {
         </>
       ) : (
         <div className="absolute flex flex-col text-center top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 gap-2.5 justify-center pointer-events-none">
-          
-          <span className="text-lg sm:text-xl font-mono">Nothing to show</span>
-          <span className="text-xs sm:text-sm text-muted-foreground">Start Running Something</span>
+          <span className="text-base sm:text-xl font-mono">
+            Nothing to show
+          </span>
+          <span className="text-xs sm:text-sm text-muted-foreground">
+            Start Running Something
+          </span>
         </div>
       )}
     </motion.div>
