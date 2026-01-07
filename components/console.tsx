@@ -64,7 +64,7 @@ export default function Console() {
       }}
       className={cn(
         toggleFloat
-          ? "fixed top-10 min-h-[400px] w-[600px] border-4 shadow-sm bg-background/60 backdrop-blur-lg cursor-move"
+          ? "fixed min-h-[200px] w-[300px] sm:min-h-[400px] sm:w-[600px] border-4 shadow-sm bg-background/60 backdrop-blur-lg cursor-move"
           : "min-h-[200px] relative w-full bg-muted z-50",
         "border rounded-md p-4 grow flex flex-col"
       )}
@@ -75,10 +75,11 @@ export default function Console() {
           <GripVertical className="w-5 h-5 text-muted-foreground" />
         </div>
       )}
-      <div className="absolute top-4 right-10 flex items-center gap-2">
+      <div className="absolute top-4 right-4 flex items-center gap-2">
         <Button
           variant={"outline"}
           size={"icon"}
+          disabled={!!!stdout}
           onClick={() => setStdout(null)}
         >
           <Delete />
@@ -106,8 +107,9 @@ export default function Console() {
         </>
       ) : (
         <div className="absolute flex flex-col text-center top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 gap-2.5 justify-center pointer-events-none">
-          <span className="text-xl font-mono">Nothing to show</span>
-          <span className="text-muted-foreground">Start Running Something</span>
+          
+          <span className="text-lg sm:text-xl font-mono">Nothing to show</span>
+          <span className="text-xs sm:text-sm text-muted-foreground">Start Running Something</span>
         </div>
       )}
     </motion.div>
