@@ -26,7 +26,7 @@ export default function CodeRunButton() {
         indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/",
       });
 
-      const jscSource = await fetch("/jsc.py").then((r) => r.text());
+      const jscSource = await fetch("/jsc-v0.1.py").then((r) => r.text());
       await py.runPythonAsync(jscSource);
 
       setPyodide(py);

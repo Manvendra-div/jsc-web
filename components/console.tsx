@@ -60,14 +60,14 @@ export default function Console() {
       }}
       className={cn(
         toggleFloat
-          ? "fixed min-h-[200px] w-[300px] sm:min-h-[400px] sm:w-[600px] border-4 shadow-sm bg-background/60 backdrop-blur-lg cursor-move z-50"
+          ? "fixed min-h-[200px] w-[300px] sm:min-h-[400px] sm:w-[600px] border-4 shadow-2xl bg-background/60 backdrop-blur-lg cursor-move z-50"
           : "min-h-[200px] relative w-full bg-muted",
         "border rounded-md p-4 grow flex flex-col"
       )}
     >
       <span className="font-medium text-muted-foreground text-sm">Console</span>
       {toggleFloat && (
-        <div className="absolute right-2 top-1/2 -translate-y-1/2 cursor-grab active:cursor-grabbing">
+        <div className="absolute left-2 top-1/2 -translate-y-1/2 cursor-grab active:cursor-grabbing">
           <GripVertical className="w-5 h-5 text-muted-foreground" />
         </div>
       )}
