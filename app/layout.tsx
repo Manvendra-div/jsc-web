@@ -17,9 +17,9 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 const siteName = "JSC Compiler";
 const titleTemplate = "%s | JSC Compiler";
-const defaultTitle = "JSC Compiler | Just a Simple Compiler for JavaScript";
+const defaultTitle = "JSC Compiler | Just a Simple Compiler Based on Python";
 const description =
-  "Run, test, and iterate on JavaScript code in a fast, browser-based compiler playground.";
+  "Run, test, and iterate on new JSC code in a fast, browser-based compiler playground.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -30,7 +30,8 @@ export const metadata: Metadata = {
   applicationName: siteName,
   description,
   keywords: [
-    "JavaScript compiler",
+    "own interpreter",
+    "compiler",
     "online code runner",
     "JS playground",
     "TypeScript",
