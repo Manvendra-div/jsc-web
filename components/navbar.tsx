@@ -12,16 +12,25 @@ import MobileMenu from "./mobile-menu";
 
 export default function NavBar() {
   return (
-    <div className="flex justify-between items-center w-full px-10 py-4">
-      <div className="flex items-center gap-2">
+    <div className="flex w-full items-center justify-between px-10 py-4">
+      <Link
+        href="/"
+        className="flex items-center gap-2 no-underline"
+        aria-label="JSC Compiler home"
+        prefetch
+      >
         <Eclipse className="fill-primary stroke-primary-foreground border border-primary" />
-        <div className="text-xl font-medium inline-flex">
-          JSC <p className="hidden sm:block ml-1">- Just a Simple Compiler</p>
+        <div className="inline-flex text-xl font-medium">
+          <span aria-hidden="true">JSC</span>
+          <span className="ml-1 hidden sm:block">
+            Just a Simple Compiler
+          </span>
+          <span className="sr-only">JSC — Just a Simple Compiler</span>
         </div>
         <Badge className="hidden sm:inline-flex">
           <GamepadDirectional /> Playground Window
         </Badge>
-      </div>
+      </Link>
       <div className="flex items-center gap-2">
         <CodeRunButton />
         <MobileMenu>

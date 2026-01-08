@@ -1,1 +1,54 @@
-<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">JSC Compiler — Python-powered JSC language playground</title>
+  <desc id="desc">Modern dark UI mock showing code window, JSC syntax highlight, and Python-inspired runtime glyph.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0b1220"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="1" y2="0">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="150" y="110" width="900" height="420" rx="24" fill="#0b1220" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <rect x="150" y="110" width="900" height="72" rx="20" fill="rgba(255,255,255,0.04)"/>
+  <circle cx="192" cy="146" r="10" fill="#ef4444"/>
+  <circle cx="228" cy="146" r="10" fill="#f59e0b"/>
+  <circle cx="264" cy="146" r="10" fill="#10b981"/>
+
+  <g filter="url(#glow)">
+    <path d="M360 248h384c18 0 32 14 32 32v188c0 18-14 32-32 32H360c-18 0-32-14-32-32V280c0-18 14-32 32-32Z" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+    <rect x="392" y="284" width="316" height="24" rx="6" fill="rgba(124,58,237,0.15)" />
+    <rect x="392" y="324" width="256" height="18" rx="5" fill="rgba(6,182,212,0.15)" />
+    <rect x="392" y="358" width="280" height="18" rx="5" fill="rgba(255,255,255,0.08)" />
+    <rect x="392" y="392" width="220" height="18" rx="5" fill="rgba(255,255,255,0.06)" />
+    <rect x="392" y="426" width="190" height="18" rx="5" fill="rgba(124,58,237,0.12)" />
+  </g>
+
+  <g transform="translate(780 300) scale(1.1)">
+    <path d="M60 20c0-11 9-20 20-20h72c11 0 20 9 20 20v72c0 11-9 20-20 20H80c-11 0-20-9-20-20Z" fill="url(#accent)" opacity="0.16"/>
+    <path d="M96 30c0-8 6-14 14-14h48c8 0 14 6 14 14v30c0 8-6 14-14 14h-22c-6 0-10 4-10 10v10c0 8-6 14-14 14H78c-8 0-14-6-14-14V64c0-8 6-14 14-14h22c6 0 10-4 10-10Z" fill="url(#accent)"/>
+    <circle cx="122" cy="44" r="6" fill="#0b1220"/>
+    <circle cx="106" cy="120" r="6" fill="#0b1220"/>
+  </g>
+
+  <text x="180" y="230" fill="rgba(255,255,255,0.72)" font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont" font-size="46" font-weight="700" letter-spacing="0.4">
+    JSC Compiler
+  </text>
+  <text x="180" y="272" fill="rgba(255,255,255,0.64)" font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont" font-size="24">
+    <tspan x="180" dy="0">Python-powered JSC language playground</tspan>
+    <tspan x="180" dy="30">Explore the JSC syntax right in your browser</tspan>
+  </text>
+  <text x="180" y="344" fill="#06b6d4" font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont" font-size="19">
+    • Explore JSC syntax • Instant execution • Shareable links • Modern UI
+  </text>
+</svg>
