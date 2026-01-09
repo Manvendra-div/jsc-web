@@ -21,15 +21,14 @@ export default function Console() {
   const [stdout, setStdout] = useAtom(output_code_atom);
   const [toggleFloat, setToggleFloat] = useState<boolean>(false);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-  const [isCopied, setIsCopied] = useState<boolean>(false);
 
   const handleCopy = (content: string) => {
     // The library returns a boolean indicating success
     const success = copy(content);
     if (success) {
-      setIsCopied(true);
+
       toast.success("Console Copied to Clipboard.")
-      setTimeout(() => setIsCopied(false), 2000);
+
     }
   };
 
@@ -60,9 +59,9 @@ export default function Console() {
       dragConstraints={
         windowSize.width > 0 && windowSize.height > 0
           ? {
-              top: 0,
-              left: 0,
-            }
+            top: 0,
+            left: 0,
+          }
           : undefined
       }
       initial={toggleFloat ? { scale: 0.8, opacity: 0 } : false}
@@ -144,7 +143,9 @@ export default function Console() {
       </div>
       {stdout ? (
         <>
-          <div className="font-mono text-green-400 mt-4">{stdout}</div>
+          <pre className="font-mono text-green-400 mt-4 whitespace-pre-wrap">
+            {stdout}
+          </pre>
         </>
       ) : (
         <div className="absolute flex flex-col text-center top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 gap-2.5 justify-center pointer-events-none">

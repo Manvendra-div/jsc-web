@@ -39,11 +39,18 @@ export default function CodeRunButton() {
     setIsRunLoading(true);
     if (!pyodide) return;
 
-    // 1) capture stdout into a JS string
+    // 1) capture stdout into a JS string, forcing each print/render on its own line
     let captured = "";
     pyodide.setStdout({
       batched: (s: string) => {
-        captured += s;
+        // Pyodide may batch prints without trailing newlines,
+        // so normalize each chunk to end with "\n" for the console.
+        if (!s) return;
+        if (s.endsWith("\n")) {
+          captured += s;
+        } else {
+          captured += s + "\n";
+        }
       },
     });
 
