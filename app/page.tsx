@@ -3,6 +3,9 @@ import LandingNavBar from "@/components/landing/navbar";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, Code2, GamepadDirectional, Play } from "lucide-react";
 import Link from "next/link";
+import {motion} from "motion/react"
+import CodeBoxAnimated from "@/components/landing/code-box-animated";
+import Batch from "@/components/landing/batch";
 
 export default function Home() {
   return (
@@ -11,12 +14,12 @@ export default function Home() {
         <LandingNavBar />
         <Hero />
         <section className="relative rounded-4xl p-6 sm:p-10 border w-[90%] mb-10">
-          <div className="bg-muted rounded-full w-16 absolute h-4 top-2 left-1/2 -translate-x-1/2"/>
+          <Batch/>
           <h1 className="text-xl sm:text-4xl font-semibold opacity-60 leading-tight">
             What's new in JSC
           </h1>
           <div className="flex mt-10 sm:mt-8 items-center gap-4 sm:gap-8 w-full">
-            <Code2 className="hidden sm:block size-42 bg-muted rounded-full p-2.5 sm:p-4 stroke-primary hover:shadow-xl transition" />
+            <Code2 className="hidden stroke-1 sm:block size-42 bg-muted rounded-full p-2.5 sm:p-4 stroke-primary transition" />
             <div className="flex flex-col gap-2">
               <span className="text-base sm:text-2xl font-mono leading-tight">
                 New Set of Syntax
@@ -30,34 +33,10 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
-            <div className="mask-b-from-60% hidden sm:block w-[40%] ml-auto space-y-4 border">
-              <div className="relative bg-muted max-w-full rounded-2xl font-mono p-4 m-4">
-                <p>
-                  <span className="text-violet-600 font-medium">var</span>{" "}
-                  developer = <span className="text-emerald-500">"Manu"</span>;
-                </p>
-                <p>
-                  <span className="text-violet-600 font-medium">render</span>{" "}
-                  <span className="text-emerald-500">"Hello world "</span> +
-                  developer;
-                </p>
-                <Button
-                  variant={"outline"}
-                  size={"icon"}
-                  className="absolute top-2 right-2"
-                >
-                  <Play className="fill-inherit" />
-                </Button>
-              </div>
-              <div className="w-full h-0.5 bg-muted" />
-              <div className="relative bg-muted max-w-full rounded-2xl font-mono p-4 m-4">
-                <span className="text-fuchsia-500">manvendra@jsc:~$ </span>
-                <span className="text-emerald-500">Hello world Manu</span>
-              </div>
-            </div>
+            <CodeBoxAnimated/>
           </div>
           <div className="flex flex-row-reverse mt-10 sm:mt-32 items-center gap-4 sm:gap-8 w-full">
-            <GamepadDirectional className="hidden sm:block size-42 bg-muted rounded-full p-2.5 sm:p-4 stroke-primary hover:shadow-xl transition" />
+            <GamepadDirectional className="hidden stroke-1 sm:block size-42 bg-muted rounded-full p-2.5 sm:p-4 stroke-primary transition" />
             <div className="flex flex-col gap-2 sm:text-end">
               <span className="text-base sm:text-2xl leading-tight">
                 Web-Based Playground
