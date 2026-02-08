@@ -1,9 +1,8 @@
 import Hero from "@/components/landing/hero";
 import LandingNavBar from "@/components/landing/navbar";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, Code2, GamepadDirectional, Play } from "lucide-react";
+import { ArrowUpRight, Code2, GamepadDirectional } from "lucide-react";
 import Link from "next/link";
-import {motion} from "motion/react"
 import CodeBoxAnimated from "@/components/landing/code-box-animated";
 import Batch from "@/components/landing/batch";
 
@@ -27,11 +26,11 @@ export default function Home() {
               <span className="text-sm sm:text-lg text-muted-foreground">
                 Compiler-style syntax designed from scratch
               </span>
-              <Link href={"/docs"}>
-                <Button className="w-fit">
+              <Button asChild className="w-fit">
+                <Link href="/docs">
                   Explore Docs <ArrowUpRight />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
             <CodeBoxAnimated/>
           </div>
@@ -44,8 +43,10 @@ export default function Home() {
               <span className="text-sm sm:text-lg text-muted-foreground">
                 A Web Based Playground to run JSC code just into your Browser
               </span>
-              <Button className="w-fit sm:ml-auto">
-                Explore Playground <ArrowUpRight />
+              <Button asChild className="w-fit sm:ml-auto">
+                <Link href="/playground">
+                  Explore Playground <ArrowUpRight />
+                </Link>
               </Button>
             </div>
           </div>
