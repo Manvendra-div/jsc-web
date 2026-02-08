@@ -15,17 +15,17 @@ export default function Hero() {
         scratch.
       </span>
       <div className="flex items-center gap-2.5">
-        <Link href={"/docs"}>
-          <Button size={"lg"}>
+        <Button asChild size={"lg"}>
+          <Link href="/docs">
             Read Docs
             <BookOpenText className="w-4 h-4" />
-          </Button>
-        </Link>
-        <Link href={"/playground"}>
-          <Button variant={"secondary"} size={"lg"}>
+          </Link>
+        </Button>
+        <Button asChild variant={"secondary"} size={"lg"}>
+          <Link href="/playground">
             Try it <ArrowUpRight />
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </div>
   );

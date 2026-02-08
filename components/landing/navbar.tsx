@@ -18,23 +18,24 @@ export default function LandingNavBar() {
             <Menu />
           </Button>
         </MobileMenu>
-        <Link href={"/docs"}>
-          <Button
-            size={"lg"}
-            variant={"secondary"}
-            className="hidden sm:inline-flex"
-          >
+        <Button
+          asChild
+          size={"lg"}
+          variant={"secondary"}
+          className="hidden sm:inline-flex"
+        >
+          <Link href="/docs">
             Read Docs
             <BookOpenText className="w-4 h-4" />
-          </Button>
-        </Link>
+          </Link>
+        </Button>
         <div className="h-8 bg-muted w-1.5 rounded-md hidden sm:block" />
-        <Link href={"/playground"}>
-          <Button size={"lg"} className="hidden sm:inline-flex">
+        <Button asChild size={"lg"} className="hidden sm:inline-flex">
+          <Link href="/playground">
             Try it
             <ArrowUpRight className="w-4 h-4" />
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </div>
   );
