@@ -191,27 +191,31 @@ class Env(dict):
     pass
 
 
-def eval_node(node, env):
+def eval_node(node, env, *, render_fn=print, assist_fn=None):
     """Execute an AST node."""
     t = node[0]
 
     if t == "program":
         for stmt in node[1]:
-            eval_node(stmt, env)
+            eval_node(stmt, env, render_fn=render_fn, assist_fn=assist_fn)
 
     elif t == "var":  # variable declaration
         _, name, expr = node
-        env[name] = eval_node(expr, env)
+        env[name] = eval_node(expr, env, render_fn=render_fn, assist_fn=assist_fn)
 
     elif t == "assign":  # assignment
         _, name, expr = node
-        env[name] = eval_node(expr, env)
+        env[name] = eval_node(expr, env, render_fn=render_fn, assist_fn=assist_fn)
 
     elif t == "render":  # output
-        print(eval_node(node[1], env))
+        render_fn(eval_node(node[1], env, render_fn=render_fn, assist_fn=assist_fn))
 
     elif t == "assist":  # AI helper placeholder
-        ai_help(eval_node(node[1], env))
+        assist_query = eval_node(node[1], env, render_fn=render_fn, assist_fn=assist_fn)
+        if assist_fn:
+            assist_fn(assist_query)
+        else:
+            ai_help(assist_query, render_fn=render_fn)
 
     elif t == "num":
         return node[1]
@@ -220,32 +224,34 @@ def eval_node(node, env):
         return node[1]
 
     elif t == "input":  # capture keyword
-        prompt = eval_node(node[1], env)
+        prompt = eval_node(node[1], env, render_fn=render_fn, assist_fn=assist_fn)
         return input(str(prompt))
 
     elif t == "var_ref":
         return env[node[1]]
 
     elif t == "add":  # + operator
-        left = eval_node(node[1], env)
-        right = eval_node(node[2], env)
+        left = eval_node(node[1], env, render_fn=render_fn, assist_fn=assist_fn)
+        right = eval_node(node[2], env, render_fn=render_fn, assist_fn=assist_fn)
         # If numbers → add, if strings → concatenate
         return left + right if isinstance(left, (int,float)) and isinstance(right, (int,float)) else str(left) + str(right)
 
     elif t == "minus":  # - operator
-        return eval_node(node[1], env) - eval_node(node[2], env)
+        return eval_node(node[1], env, render_fn=render_fn, assist_fn=assist_fn) - eval_node(
+            node[2], env, render_fn=render_fn, assist_fn=assist_fn
+        )
 
     elif t == "dountil":  # loop
         _, cond, body = node
-        while not eval_condition(cond, env):
+        while not eval_condition(cond, env, render_fn=render_fn, assist_fn=assist_fn):
             for stmt in body:
-                eval_node(stmt, env)
+                eval_node(stmt, env, render_fn=render_fn, assist_fn=assist_fn)
 
-def eval_condition(cond, env):
+def eval_condition(cond, env, *, render_fn=print, assist_fn=None):
     """Evaluates comparison operators: >=, <=, ==, != etc."""
     _, op, left, right = cond
-    left_val = eval_node(left, env)
-    right_val = eval_node(right, env)
+    left_val = eval_node(left, env, render_fn=render_fn, assist_fn=assist_fn)
+    right_val = eval_node(right, env, render_fn=render_fn, assist_fn=assist_fn)
 
     return {
         "GE": left_val >= right_val,
