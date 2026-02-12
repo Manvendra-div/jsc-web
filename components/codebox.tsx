@@ -3,7 +3,7 @@ import { input_code_atom } from "@/atoms/code";
 import { Editor, useMonaco } from "@monaco-editor/react";
 import { useAtom } from "jotai";
 import { GamepadDirectional } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function CodeBox() {
   const [code, setCode] = useAtom(input_code_atom);
