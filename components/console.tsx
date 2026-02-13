@@ -26,9 +26,7 @@ export default function Console() {
     // The library returns a boolean indicating success
     const success = copy(content);
     if (success) {
-
-      toast.success("Console Copied to Clipboard.")
-
+      toast.success("Console Copied to Clipboard.");
     }
   };
 
@@ -59,9 +57,9 @@ export default function Console() {
       dragConstraints={
         windowSize.width > 0 && windowSize.height > 0
           ? {
-            top: 0,
-            left: 0,
-          }
+              top: 0,
+              left: 0,
+            }
           : undefined
       }
       initial={toggleFloat ? { scale: 0.8, opacity: 0 } : false}
@@ -75,88 +73,93 @@ export default function Console() {
       className={cn(
         toggleFloat
           ? "fixed min-h-[200px] w-[300px] sm:min-h-[400px] sm:w-[600px] border-4 shadow-2xl bg-background/60 backdrop-blur-lg z-50"
-          : "min-h-[200px] relative w-full bg-muted",
-        "border rounded-md p-4 grow flex flex-col"
+          : "min-h-[200px] relative w-full bg-muted ",
+        "border rounded-md grow flex overflow-hidden",
       )}
     >
-      <span className="font-medium text-muted-foreground text-sm">Console</span>
-      {toggleFloat && (
-        <div className="absolute left-2 top-1/2 -translate-y-1/2 cursor-grab active:cursor-grabbing">
-          <GripVertical className="w-5 h-5 text-muted-foreground" />
-        </div>
-      )}
+       {toggleFloat && (
+          <div className="h-[400px] bg-accent p-0.5 flex justify-center items-center">
+            <GripVertical className="w-5 h-5 text-accent-foreground" />
+          </div>
+        )}
+     
+      <div className="flex flex-col p-4">
+        <span className="font-medium text-muted-foreground text-sm">
+          Console
+        </span>
 
-      <div className="absolute top-4 right-4 flex items-center gap-2">
-        {!!stdout && (
+        <div className="absolute top-4 right-4 flex items-center gap-2">
+          {!!stdout && (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  onClick={() => handleCopy(stdout)}
+                  variant={"outline"}
+                  size={"icon"}
+                >
+                  <Copy />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Click to Copy Console</p>
+              </TooltipContent>
+            </Tooltip>
+          )}
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                onClick={() => handleCopy(stdout)}
                 variant={"outline"}
                 size={"icon"}
+                disabled={!!!stdout}
+                onClick={() => setStdout(null)}
               >
-                <Copy />
+                <BrushCleaning />
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Click to Copy Console</p>
+              <p>Clear Console</p>
             </TooltipContent>
           </Tooltip>
-        )}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant={"outline"}
-              size={"icon"}
-              disabled={!!!stdout}
-              onClick={() => setStdout(null)}
-            >
-              <BrushCleaning />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Clear Console</p>
-          </TooltipContent>
-        </Tooltip>
-        <Button
-          onClick={() => setToggleFloat(!toggleFloat)}
-          size={"sm"}
-          className="hidden sm:inline-flex"
-        >
-          {toggleFloat ? (
-            <>
-              Pop In The Console <ArrowDownRight />
-            </>
-          ) : (
-            <>
-              Pop Out The Console <ExternalLink />
-            </>
-          )}
-        </Button>
-        <Button
-          onClick={() => setToggleFloat(!toggleFloat)}
-          size={"icon"}
-          className="sm:hidden"
-        >
-          <ExternalLink />
-        </Button>
-      </div>
-      {stdout ? (
-        <>
-          <pre className="font-mono text-green-400 mt-4 whitespace-pre-wrap">
-            {stdout}
-          </pre>
-        </>
-      ) : (
-        <div className="absolute flex flex-col text-center top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 gap-2.5 justify-center pointer-events-none">
-          <span className="text-base sm:text-xl font-mono">
-            Nothing to show
-          </span>
-          <span className="text-xs sm:text-sm text-muted-foreground">
-            Start Running Something
-          </span>
+          <Button
+            onClick={() => setToggleFloat(!toggleFloat)}
+            size={"sm"}
+            className="hidden sm:inline-flex"
+          >
+            {toggleFloat ? (
+              <>
+                Pop In The Console <ArrowDownRight />
+              </>
+            ) : (
+              <>
+                Pop Out The Console <ExternalLink />
+              </>
+            )}
+          </Button>
+          <Button
+            onClick={() => setToggleFloat(!toggleFloat)}
+            size={"icon"}
+            className="sm:hidden"
+          >
+            <ExternalLink />
+          </Button>
         </div>
-      )}
+        {stdout ? (
+          <>
+            <pre className="font-mono text-green-400 mt-4 whitespace-pre-wrap">
+              {stdout}
+            </pre>
+          </>
+        ) : (
+          <div className="absolute flex flex-col text-center top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 gap-2.5 justify-center pointer-events-none">
+            <span className="text-base sm:text-xl font-mono">
+              Nothing to show
+            </span>
+            <span className="text-xs sm:text-sm text-muted-foreground">
+              Start Running Something
+            </span>
+          </div>
+        )}
+      </div>
     </motion.div>
   );
 }
