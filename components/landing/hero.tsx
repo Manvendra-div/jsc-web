@@ -1,6 +1,7 @@
-import { ArrowUpRight, BookOpenText, Eclipse } from "lucide-react";
+import { ArrowUpRight, BookOpenText, Download, Eclipse } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import OSSelectDialog from "./os-select-dialog";
 
 export default function Hero() {
   return (
@@ -15,6 +16,16 @@ export default function Hero() {
         scratch.
       </span>
       <div className="flex items-center gap-2.5">
+        <OSSelectDialog>
+          <Button
+            size={"lg"}
+            className="relative before:absolute before:top-0 before:left-0 before:w-full
+     before:h-full before:content-[''] before:opacity-[0.12] before:z-10 before:pointer-events-none
+     before:bg-[url('https://www.ui-layouts.com/noise.gif')] overflow-hidden"
+          >
+            Download <Download className="w-4-h-4" />
+          </Button>
+        </OSSelectDialog>
         <Button asChild size={"lg"}>
           <Link href="/docs">
             Read Docs
