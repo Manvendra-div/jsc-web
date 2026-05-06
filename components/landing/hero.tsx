@@ -1,4 +1,4 @@
-import { ArrowUpRight, BookOpenText, Download, Eclipse } from "lucide-react";
+import { ArrowUpRight, Download, Eclipse } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import OSSelectDialog from "./os-select-dialog";
@@ -19,7 +19,7 @@ export default function Hero() {
         <OSSelectDialog>
           <Button
             size={"lg"}
-            className="relative before:absolute before:top-0 before:left-0 before:w-full before:h-full before:content-[''] before:opacity-[0.12] before:z-10 before:pointer-events-none before:bg-[url('https://www.ui-layouts.com/noise.gif')] overflow-hidden"
+            className="items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm hover:shadow-md bg-stone-800 hover:bg-stone-700 relative bg-linear-to-b from-stone-700 to-stone-800 border-stone-900 text-stone-50 rounded-full hover:bg-linear-to-b hover:from-stone-800 hover:to-stone-800 hover:border-stone-900 after:absolute after:inset-0 after:rounded-[inherit] after:box-shadow after:shadow-[inset_0_1px_0px_rgba(255,255,255,0.25),inset_0_-2px_0px_rgba(0,0,0,0.35)] after:pointer-events-none transition antialiased"
           >
             Download <Download className="w-4-h-4" />
           </Button>
